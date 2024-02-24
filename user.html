@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <style>
+        .card:hover .card-body {
+            background-color: #c6c8ca
+        }
+
+        .card:hover {
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="container">
+
+        <div class="text-center mt-4">
+            <h3>Select Doctor</h3>
+        </div>
+
+        <hr class="mb-5" width="10%" color="green">
+
+        <div class="row">
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card rounded shadow">
+                    <img src="" class="card-img-top rounded-top" alt="Card Image">
+                    <div class="card-body rounded-bottom">
+                        <h5 class="card-name">Name 1</h5>
+                        <p class="card-specialty">Specialty 1</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card rounded shadow">
+                    <img src="" class="card-img-top rounded-top" alt="Card Image">
+                    <div class="card-body rounded-bottom">
+                        <h5 class="card-name">Name 2</h5>
+                        <p class="card-specialty">Specialty 2</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card rounded shadow">
+                    <img src="" class="card-img-top rounded-top" alt="Card Image">
+                    <div class="card-body rounded-bottom">
+                        <h5 class="card-name">Name 3</h5>
+                        <p class="card-specialty">Specialty 3</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card rounded shadow">
+                    <img src="" class="card-img-top rounded-top" alt="Card Image">
+                    <div class="card-body rounded-bottom">
+                        <h5 class="card-name">Name 4</h5>
+                        <p class="card-specialty">Specialty 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        
+        fetch('https://jsonplaceholder.typicode.com/photos')
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < 4; i++) {
+                    const card = document.getElementsByClassName('card')[i];
+                    const image = card.querySelector('.card-img-top');
+                    const name = card.querySelector('.card-name');
+                    const specialty = card.querySelector('.card-specialty');
+
+                    image.src = data[i].url;
+                    name.textContent = `Name ${i + 1}`;
+                    specialty.textContent = `Specialty ${i + 1}`;
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
+</body>
+</html>
